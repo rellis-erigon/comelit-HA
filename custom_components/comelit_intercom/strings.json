@@ -1,0 +1,86 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Comelit Intercom",
+        "data": {
+          "host": "IP Address",
+          "port": "Port",
+          "web_password": "Device web password",
+          "dedicated_user": "Dedicated user name or email (optional)",
+          "token": "Token (optional)"
+        },
+        "description": "Enter the IP address of your Comelit intercom. Just leave the rest as-is: Home Assistant will automatically create its own dedicated user on the device and activate it locally (no cloud, no app). This needs the device web password (the factory default is 'comelit'). Advanced options: point at a user you paired yourself via the Comelit app, or paste an existing token.",
+        "data_description": {
+          "port": "ICONA Bridge port (default 64100 - leave as-is unless you use port forwarding)",
+          "web_password": "Password of the device web UI on port 8080 (factory default 'comelit')",
+          "dedicated_user": "Advanced: name or email of a user you created and paired via the app; its token is read from a device backup instead of creating a new user",
+          "token": "Advanced: use an existing user token directly"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate Comelit Intercom",
+        "description": "The token for {host} is no longer valid. Leave the token blank to auto-provision a fresh dedicated user (needs the device web password), or paste a token. The current token is shown below so you can copy it.",
+        "data": {
+          "web_password": "Device web password",
+          "dedicated_user": "Dedicated user name or email (optional)",
+          "token": "Token (optional)"
+        },
+        "data_description": {
+          "web_password": "Password of the device web UI on port 8080 (factory default 'comelit')",
+          "dedicated_user": "Advanced: name or email of a user you paired via the app",
+          "token": "Current token (edit to change, or blank to re-provision)"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Comelit Intercom",
+        "description": "Change the IP address or authentication for {host} without removing the integration.",
+        "data": {
+          "host": "IP Address",
+          "port": "Port",
+          "web_password": "Device web password",
+          "dedicated_user": "Dedicated user name or email (optional)",
+          "token": "Token (optional)"
+        },
+        "data_description": {
+          "port": "ICONA Bridge port (default 64100)",
+          "web_password": "Password of the device web UI on port 8080 (factory default 'comelit')",
+          "dedicated_user": "Advanced: name or email of a user you paired via the app",
+          "token": "Current token (edit to change, or blank to re-provision)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the device",
+      "invalid_auth": "Invalid authentication token",
+      "auto_token_failed": "Failed to extract token automatically. Please check that the device is accessible and using the default 'comelit' password, or enter your token manually.",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "Device is already configured",
+      "reauth_successful": "Re-authentication was successful",
+      "reconfigure_successful": "Reconfiguration was successful"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Comelit Intercom options",
+        "data": {
+          "enable_notifications": "Doorbell ring notifications (cloud push)",
+          "push_token": "Push identity token (optional)",
+          "enable_audio": "Entrance audio (two-way call audio)",
+          "auto_answer": "Auto-answer doorbell (experimental two-way)",
+          "verbose_logging": "Verbose debug logging"
+        },
+        "data_description": {
+          "enable_notifications": "Receive real-time ring events via Comelit's cloud (FCM). Requires the device to have internet access.",
+          "push_token": "Advanced: enroll push under a different ICONA token so a paired phone keeps its own notifications. Leave empty to use the main token.",
+          "enable_audio": "Carry the entrance's G.711 audio in the camera stream (audible via the unmute control in the WebRTC view). Turn off if the audio track disturbs the HLS/video playback. Takes effect on the next stream reconnect.",
+          "auto_answer": "Experimental: when the doorbell rings, automatically answer the incoming call (inbound two-way audio). May be unstable and, on shared/multi-unit entries, can affect other units. Leave off unless testing. Takes effect on reload.",
+          "verbose_logging": "Log detailed protocol/video/audio internals (for bug reports). Also enable debug logging on the integration to capture everything."
+        }
+      }
+    }
+  }
+}
