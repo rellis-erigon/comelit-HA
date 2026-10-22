@@ -70,6 +70,17 @@ Home Assistant custom integration for Comelit VIP intercom systems using the ICO
 
 This integration communicates with Comelit VIP devices using the ICONA Bridge protocol over TCP port 64100. The protocol uses a custom binary/JSON hybrid format with channel-based multiplexing for authentication, configuration, door control, video streaming, and push notifications.
 
+## Development
+
+This repository is public. Before committing, check that nothing from a real
+installation (addresses, names, device ids) has crept in:
+
+```bash
+python3 scripts/check-no-site-detail.py
+```
+
+Examples use the documentation range `192.0.2.x`.
+
 ## Credits
 
 Based on [hass-comelit-icona](https://github.com/simllll/hass-comelit-icona) by @simllll and @nicolas-fricke.
